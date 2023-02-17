@@ -2,9 +2,9 @@ from indexing.indexers.indexer import Indexer
 from transformers import DPRContextEncoder, DPRContextEncoderTokenizer
 
 class DPRIndexer(Indexer):
-    def __init__(self, index_name: str, data: list, model_name: str):
+    def __init__(self, index_name: str, data: list):
         super().__init__(index_name, data)
-        self.model_name = model_name
+        self.model_name = "facebook/dpr-ctx_encoder-single-nq-base"
         self.tokenizer = DPRContextEncoderTokenizer.from_pretrained(self.model_name)
         self.encoder = DPRContextEncoder.from_pretrained(self.model_name)
 

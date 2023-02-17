@@ -2,9 +2,9 @@ from indexing.indexers.indexer import Indexer
 from sentence_transformers import SentenceTransformer
 
 class T5Indexer(Indexer):
-    def __init__(self, index_name: str, data: list, model_name: str):
+    def __init__(self, index_name: str, data: list):
         super().__init__(index_name, data)
-        self.encoder_name = model_name
+        self.encoder_name = "sentence-transformers/sentence-t5-base"
         self.encoder = SentenceTransformer(self.encoder_name)
 
     def gen_data(self):
