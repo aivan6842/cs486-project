@@ -40,6 +40,16 @@ DPR <br />
 T5 <br />
 `python .\indexing\index.py -i uwaterloo-courses-t5 -d .\scraping\contents\waterloo\output.json`
 
+# Inference
+Commands to run inference
+Replace YOUR QUERY with a query string. The RETRIEVERS param can be replaced with any combination of bm25, dpr, or t5. N is the number of returned courses, and the BOOL should be set to true if you would like to rerank the scores. Note reranking automatically occurs if using multiple retrievers.<br />
+`python .\inference\infer.py -q "YOUR QUERY" -rt RETRIEVERS -n N -rr BOOL`<br />
+As an example of dpr retrieval with reranking<br />
+`python .\inference\infer.py -q "Machine Learning" -rt dpr -n 5 -rr True`<br />
+As an example BM25 + T5 retrieval (auto reranking)
+`python .\inference\infer.py -q "Machine Learning" -rt bm25 t5 -n 5`<br />
+
+
 # To do
   1. Fine tune DPR
   2. Remove excess info from course descrptions
