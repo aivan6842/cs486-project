@@ -33,12 +33,12 @@ Suggest Courses from University Based on Interests / Bio
  
 # Indexing
 Commands to run indexing
-BM25
+BM25 <br />
 `python .\indexing\index.py -i uwaterloo-courses -d .\scraping\contents\waterloo\output.json`
-DPR
-`python .\indexing\index.py -i uwaterloo-courses-dpr -d .\scraping\contents\waterloo\output.json -m facebook\dpr-ctx_encoder-single-nq-base`
-T5
-`python .\indexing\index.py -i uwaterloo-courses-t5 -d .\scraping\contents\waterloo\output.json -m sentence-transformers/sentence-t5-base`
+DPR <br />
+`python .\indexing\index.py -i uwaterloo-courses-dpr -d .\scraping\contents\waterloo\output.json`
+T5 <br />
+`python .\indexing\index.py -i uwaterloo-courses-t5 -d .\scraping\contents\waterloo\output.json`
 
 # To do
   1. Fine tune DPR
