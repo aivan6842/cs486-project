@@ -32,11 +32,11 @@ Suggest Courses from University Based on Interests / Bio
   Note: can pass use paths for the file names
  
 # Indexing
-Commands to run indexing
+Commands to run indexing<br />
 BM25 <br />
-`python .\indexing\index.py -i uwaterloo-courses -d .\scraping\contents\waterloo\output.json`
+`python .\indexing\index.py -i uwaterloo-courses -d .\scraping\contents\waterloo\output.json`<br />
 DPR <br />
-`python .\indexing\index.py -i uwaterloo-courses-dpr -d .\scraping\contents\waterloo\output.json`
+`python .\indexing\index.py -i uwaterloo-courses-dpr -d .\scraping\contents\waterloo\output.json`<br />
 T5 <br />
 `python .\indexing\index.py -i uwaterloo-courses-t5 -d .\scraping\contents\waterloo\output.json`
 
