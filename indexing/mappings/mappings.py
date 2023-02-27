@@ -27,12 +27,21 @@ class ESMappings(dict, Enum):
                     "courseCode": {"type": "text"},
                     "courseName": {"type": "text"},
                     "courseDescription": {"type": "text"},
-                    "courseDescEncoding": {"type": "dense_vector", "dims": 768, "index": True, "similarity": "l2_norm"}
+                    "courseDescEncoding": {"type": "dense_vector", "dims": 768, "index": True, "similarity": "dot_product"}
                 }
             }
         }
     
-    UWATERLOO_T5_INDEX_MAPPING = copy.deepcopy(UWATERLOO_DPR_INDEX_MAPPING)
+    UWATERLOO_T5_INDEX_MAPPING = {
+            "mappings": {
+                "properties" : {
+                    "courseCode": {"type": "text"},
+                    "courseName": {"type": "text"},
+                    "courseDescription": {"type": "text"},
+                    "courseDescEncoding": {"type": "dense_vector", "dims": 768, "index": True, "similarity": "l2_norm"}
+                }
+            }
+        }
 
     @classmethod
     def get_mapping_from_index_name(cls, index_name: str):
