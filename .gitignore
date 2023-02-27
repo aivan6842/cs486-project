@@ -1,2 +1,3 @@
 shared/configs
 **/__pycache__/
+indexing/index_courses.ipynb
