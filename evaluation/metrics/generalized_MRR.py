@@ -6,14 +6,11 @@ class GeneralizedMeanReciprocalRank(Metric):
         res=0
         for i in range(q):
             s=0
+            index_of_first_relevant=-1
             for j in range(10):
-                top=y[i][j]
-                index=-1
-                try :
-                    index=y_hat[i].index(top)+1
-                except ValueError:
-                    index=-1
-                reciprocal_rank=1/index if index != -1 else 0
+                if index_of_first_relevant==-1:
+                    index_of_first_relevant=j
+                reciprocal_rank=index_of_first_relevant if index_of_first_relevant != -1 else 0
                 s+=reciprocal_rank
             s=s/10
             res+=s
