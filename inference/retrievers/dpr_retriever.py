@@ -1,6 +1,6 @@
 from transformers import DPRQuestionEncoder, DPRQuestionEncoderTokenizer
 from typing import Any
-
+from torch.nn.functional import normalize
 from inference.retrievers.retriever import Retriever
 from indexing.enums.index_names import IndexName
 
@@ -14,7 +14,7 @@ class DPRRetriever(Retriever):
     
     def get_es_query(self, query: str, num_results: int = 5) -> dict[Any, Any]:
         input_ids = self.tokenizer(query, return_tensors="pt")["input_ids"]
-        embedding = self.model(input_ids).pooler_output.tolist()[0]
+        embedding = normalize(self.model(input_ids).pooler_output).tolist()[0]
         es_query = {
             "from": 0, 
             "size": num_results, 
