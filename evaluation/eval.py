@@ -1,15 +1,15 @@
 from argparse import ArgumentParser
-import json
 import pandas 
 from inference.infer import inference
 from evaluation.metrics.mean_reciprocal_rank import MeanReciprocalRank 
 from evaluation.metrics.generalized_MRR import GeneralizedMeanReciprocalRank 
+from evaluation.metrics.map_k import Mapk
 
 def evaluate(file: str, retriever_names: list, metric_name: str, is_long_query:bool , rerank: bool=False, reranker: str='minilm'):
     METRIC_MAP = {
         "MRR" : MeanReciprocalRank,
         "GMRR" : GeneralizedMeanReciprocalRank,
-
+        "MAPK" : Mapk,
     }
     #f=open(file,'r')
     df=pandas.read_excel(file)
