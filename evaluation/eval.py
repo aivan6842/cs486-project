@@ -4,12 +4,16 @@ from inference.infer import inference
 from evaluation.metrics.mean_reciprocal_rank import MeanReciprocalRank 
 from evaluation.metrics.generalized_MRR import GeneralizedMeanReciprocalRank 
 from evaluation.metrics.map_k import Mapk
+from evaluation.metrics.precision import Precision
+from evaluation.metrics.recall import Recall
 
 def evaluate(file: str, retriever_names: list, metric_name: str, is_long_query:bool , rerank: bool=False, reranker: str='minilm'):
     METRIC_MAP = {
         "MRR" : MeanReciprocalRank,
         "GMRR" : GeneralizedMeanReciprocalRank,
         "MAPK" : Mapk,
+        "PRE" : Precision,
+        "REC" : Recall,
     }
     #f=open(file,'r')
     df=pandas.read_excel(file)

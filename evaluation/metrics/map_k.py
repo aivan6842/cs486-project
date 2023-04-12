@@ -2,7 +2,7 @@ from evaluation.metrics.metric import Metric
 
 class Mapk(Metric):
     def evaluate(self, y: list, yhat: list):
-        return self.mapk(y=y, yhat=yhat, k=5)
+        return self.mapk(y=y, yhat=yhat, k=10)
 
     #Average precision at k
     def apk(self, y: list, yhat: list, k: int=0):
