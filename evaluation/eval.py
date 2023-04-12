@@ -21,11 +21,10 @@ def evaluate(file: str, retriever_names: list, metric_name: str, is_long_query:b
     res=[]#is gonna contain query, y_hat and y
     for i,row in df.iterrows():
         query=row['Bio'] if is_long_query else row['query']
-        nb_of_columns=10 if is_long_query else 5
         y=[]
         for i in range(1,11):
             y.append(row[f'course_code{i}'])
-        y_hat=inference(query=query,retriever_names=retriever_names,k=nb_of_columns,rerank=rerank,ranker=reranker)
+        y_hat=inference(query=query,retriever_names=retriever_names,k=10,rerank=rerank,ranker=reranker)
         y_hat_course_codes=[x[0] for x in y_hat]
         res.append((query,y,y_hat_course_codes))
     
