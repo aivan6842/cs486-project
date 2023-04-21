@@ -7,6 +7,6 @@ class BM25Retriever(Retriever):
     def __init__(self):
         self.index_name = IndexName.UWATERLOO_COURSES_INDEX.value   
     
-    def get_es_query(self, query: str, num_results: int = 5) -> dict[Any, Any]:
+    def get_es_query(self, query: str, num_results: int = 10) -> dict[Any, Any]:
         es_query = {"from": 0, "size": num_results, "query": {"match": {"courseDescription": query}}}
         return es_query
