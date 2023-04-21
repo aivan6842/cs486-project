@@ -7,7 +7,7 @@ from inference.rerankers.miniLMV2_reranker import MiniLMV2Reranker
 from inference.rerankers.BERT_reranker import BERTReranker
 from inference.rerankers.ELECTRA_reranker import ELECTRAReranker
 
-def inference(query: str, retriever_names: list, k: int = 5, rerank: bool = False, ranker: str = 'minilm') -> list[tuple[str, str, str]]:
+def inference(query: str, retriever_names: list, k: int = 10, rerank: bool = False, ranker: str = 'minilm') -> list[tuple[str, str, str]]:
     """
     Given a list of retrievers will return top k course suggestions
     Returns : [(course_code, course_name, course_description), ...]
@@ -38,7 +38,7 @@ def inference(query: str, retriever_names: list, k: int = 5, rerank: bool = Fals
     RERANKER_MAP = {
         "minilm" : MiniLMV2Reranker,
         "bert" : BERTReranker,
-        "electra": T5Retriever
+        "electra": ELECTRAReranker
     }
 
     # unique results only

@@ -9,10 +9,10 @@ from evaluation.metrics.recall import Recall
 
 def evaluate(file: str, retriever_names: list, metric_name: str, is_long_query:bool , rerank: bool=False, reranker: str='minilm'):
     METRIC_MAP = {
-        "MRR" : MeanReciprocalRank,
+        "MRR" : MeanReciprocalRank,  #no use
         "GMRR" : GeneralizedMeanReciprocalRank,
         "MAPK" : Mapk,
-        "PRE" : Precision,
+        "PRE" : Precision,  #no use
         "REC" : Recall,
     }
     #f=open(file,'r')
@@ -25,9 +25,19 @@ def evaluate(file: str, retriever_names: list, metric_name: str, is_long_query:b
         for i in range(1,11):
             y.append(row[f'course_code{i}'])
         y_hat=inference(query=query,retriever_names=retriever_names,k=10,rerank=rerank,ranker=reranker)
+        #print(" ---y_hat:",y_hat)
         y_hat_course_codes=[x[0] for x in y_hat]
         res.append((query,y,y_hat_course_codes))
     
+    metric_name_special="GMRR"
+    metric=METRIC_MAP[metric_name_special]()
+    GMMR_val= metric.evaluate(y=[x[1] for x in res],y_hat=[x[2] for x in res])
+    print(" GMMR_val:",GMMR_val)
+
+    metric_name_special="MAPK"
+    metric=METRIC_MAP[metric_name_special]()
+    MAPK_val= metric.evaluate(y=[x[1] for x in res],y_hat=[x[2] for x in res])
+    print(" MAPK_val:",MAPK_val)
 
     metric=METRIC_MAP[metric_name]()
     return metric.evaluate(y=[x[1] for x in res],y_hat=[x[2] for x in res])
@@ -65,7 +75,6 @@ if __name__ == "__main__":
                         type=bool,
                         help="Long (true) or Short (false) query?",
                         required=True)
-    
     args = parser.parse_args()
 
     res = evaluate( file=args.file,
